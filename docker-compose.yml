@@ -1,16 +1,15 @@
 version: '3.8'
-
 services:
-  sql-server:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: weather-dw
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Strong@Passw0rd2026!
+  # Service Airflow Webserver
+  airflow:
+    image: apache/airflow:2.9.0
+    container_name: airflow_server
     ports:
-      - "1433:1433"
+      - "8080:8080"
     volumes:
-      - sql-data:/var/opt/mssql
-
-volumes:
-  sql-data:
+      - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./data:/opt/airflow/data
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    command: standalone # Chế độ chạy tất cả trong 1 container cho gọn

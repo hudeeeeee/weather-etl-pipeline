@@ -1,5 +1,5 @@
 # 1. Chọn hệ điều hành nền tảng có sẵn Python (bản slim cho nhẹ)
-FROM python:3.10-slim
+FROM apache/airflow:2.9.0
 
 # 2. Tạo một thư mục ảo tên là /app bên trong container để làm việc
 WORKDIR /app
