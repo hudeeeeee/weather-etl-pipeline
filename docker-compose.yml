@@ -3,9 +3,9 @@ services:
   # Service Airflow Webserver
   airflow:
     image: apache/airflow:2.9.0
-    container_name: airflow_server
+    container_name: weather-dw
     ports:
-      - "8080:8080"
+      - "1433:1433"
     volumes:
       - ./dags:/opt/airflow/dags
       - ./src:/opt/airflow/src
