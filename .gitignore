@@ -1,0 +1,9 @@
+# Bỏ qua file chứa mật khẩu
+.env
+
+# Bỏ qua thư mục dữ liệu (vì GitHub không phải chỗ lưu data)
+data/
+
+# Bỏ qua các file tạm của Python
+__pycache__/
+.venv/
