@@ -1,23 +1,10 @@
-<<<<<<< HEAD
 🌤️ Weather ETL Pipeline
 Dự án này là một hệ thống đường ống dữ liệu (ETL Pipeline) tự động hóa quá trình trích xuất, biến đổi và tải dữ liệu thời tiết thực tế. Dữ liệu được thu thập từ OpenWeatherMap API, xử lý thông qua Python và được điều phối bằng Apache Airflow trước khi lưu trữ vào hệ quản trị cơ sở dữ liệu SQL Server. Toàn bộ hệ thống được container hóa bằng Docker để đảm bảo tính nhất quán và dễ dàng triển khai.
-=======
-
-                                            Weather ETL Pipeline
-
-                                                            
->>>>>>> 29b8511d0c6b730a859889348c4b5ec938911f87
 
 🚀 Công nghệ sử dụng
 Ngôn ngữ lập trình: Python
 
-<<<<<<< HEAD
 Điều phối quy trình (Orchestration): Apache Airflow
-=======
-
-1. Tổng quan dự án
-Đây là hệ thống trích xuất, chuyển đổi và tải (ETL) dữ liệu thời tiết tự động. Hệ thống thu thập dữ liệu thời tiết theo thời gian thực từ API (như OpenWeatherMap), xử lý các thông số kỹ thuật và lưu trữ vào [Tên cơ sở dữ liệu/kho lưu trữ] để phục vụ phân tích dữ liệu hoặc các ứng dụng dự báo.
->>>>>>> 29b8511d0c6b730a859889348c4b5ec938911f87
 
 Cơ sở dữ liệu lưu trữ: SQL Server
 
@@ -29,7 +16,24 @@ Nguồn dữ liệu: OpenWeatherMap API
 Extract (Trích xuất): Kết nối và gọi API từ OpenWeatherMap để lấy dữ liệu thời tiết thô của các khu vực được chỉ định dưới dạng JSON.
 
 Transform (Biến đổi): Sử dụng các thư viện Python để làm sạch dữ liệu, chuẩn hóa định dạng thời gian, chuyển đổi đơn vị nhiệt độ và trích lọc các trường thông tin cần thiết nhất để phân tích.
+Transform (Biến đổi): Sử dụng các thư viện Python để làm sạch dữ liệu, chuẩn hóa định dạng thời gian, chuyển đổi đơn vị nhiệt độ và trích lọc các trường thông tin cần thiết nhất để phân tích.
 
+Load (Tải): Mở kết nối và chèn dữ liệu đã được làm sạch một cách an toàn vào các bảng tương ứng bên trong SQL Server.
+
+Automate (Tự động hóa): Apache Airflow chịu trách nhiệm lên lịch (schedule) và giám sát quá trình thực thi của toàn bộ quy trình ETL này theo các chu kỳ cố định.
+
+📋 Yêu cầu hệ thống
+Để chạy dự án này trên máy cá nhân, hệ thống của bạn cần cài đặt sẵn:
+
+Docker và Docker Compose.
+
+Tài khoản và API Key hợp lệ từ OpenWeatherMap.
+
+🛠️ Hướng dẫn cài đặt và khởi chạy
+Bước 1: Sao chép kho lưu trữ (Clone repository)
+
+Bash
+git clone https://github.com/hudeeeeee/weather-etl-pipeline.git
 Load (Tải): Mở kết nối và chèn dữ liệu đã được làm sạch một cách an toàn vào các bảng tương ứng bên trong SQL Server.
 
 Automate (Tự động hóa): Apache Airflow chịu trách nhiệm lên lịch (schedule) và giám sát quá trình thực thi của toàn bộ quy trình ETL này theo các chu kỳ cố định.
