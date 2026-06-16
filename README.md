@@ -1,70 +1,78 @@
+<<<<<<< HEAD
+🌤️ Weather ETL Pipeline
+Dự án này là một hệ thống đường ống dữ liệu (ETL Pipeline) tự động hóa quá trình trích xuất, biến đổi và tải dữ liệu thời tiết thực tế. Dữ liệu được thu thập từ OpenWeatherMap API, xử lý thông qua Python và được điều phối bằng Apache Airflow trước khi lưu trữ vào hệ quản trị cơ sở dữ liệu SQL Server. Toàn bộ hệ thống được container hóa bằng Docker để đảm bảo tính nhất quán và dễ dàng triển khai.
+=======
 
                                             Weather ETL Pipeline
 
                                                             
+>>>>>>> 29b8511d0c6b730a859889348c4b5ec938911f87
 
+🚀 Công nghệ sử dụng
+Ngôn ngữ lập trình: Python
 
+<<<<<<< HEAD
+Điều phối quy trình (Orchestration): Apache Airflow
+=======
 
 1. Tổng quan dự án
 Đây là hệ thống trích xuất, chuyển đổi và tải (ETL) dữ liệu thời tiết tự động. Hệ thống thu thập dữ liệu thời tiết theo thời gian thực từ API (như OpenWeatherMap), xử lý các thông số kỹ thuật và lưu trữ vào [Tên cơ sở dữ liệu/kho lưu trữ] để phục vụ phân tích dữ liệu hoặc các ứng dụng dự báo.
+>>>>>>> 29b8511d0c6b730a859889348c4b5ec938911f87
 
-1. Kiến trúc hệ thống
-Extract: Kết nối API để lấy dữ liệu thô (JSON format).
+Cơ sở dữ liệu lưu trữ: SQL Server
 
-Transform: Làm sạch dữ liệu, xử lý các giá trị thiếu, chuyển đổi đơn vị đo lường (ví dụ: Kelvin sang Celsius) và tính toán các chỉ số bổ sung.
+Nền tảng triển khai: Docker & Docker Compose
 
-Load: Đưa dữ liệu đã làm sạch vào cơ sở dữ liệu [SQL/NoSQL/Data Warehouse].
+Nguồn dữ liệu: OpenWeatherMap API
 
-3. Công nghệ sử dụng
-Ngôn ngữ: Python 3.x
-Thư viện: pandas (xử lý dữ liệu), requests (gọi API), sqlalchemy (kết nối DB)...\
-Cơ sở dữ liệu: [Ví dụ: PostgreSQL/MySQL/SQLite]
-Điều phối (Orchestration): [Ví dụ: Apache Airflow/Cron Job/Prefect]
-Quản lý môi trường: docker-compose / venv
+🏗️ Kiến trúc hệ thống
+Extract (Trích xuất): Kết nối và gọi API từ OpenWeatherMap để lấy dữ liệu thời tiết thô của các khu vực được chỉ định dưới dạng JSON.
 
-4. Hướng dẫn cài đặt
-Yêu cầu hệ thống
-Python 3.9+
-[Tên Database] đã được cài đặt
+Transform (Biến đổi): Sử dụng các thư viện Python để làm sạch dữ liệu, chuẩn hóa định dạng thời gian, chuyển đổi đơn vị nhiệt độ và trích lọc các trường thông tin cần thiết nhất để phân tích.
 
-Các bước thực hiện
-Clone dự án:
-git clone [link-repo-cua-ban]
+Load (Tải): Mở kết nối và chèn dữ liệu đã được làm sạch một cách an toàn vào các bảng tương ứng bên trong SQL Server.
+
+Automate (Tự động hóa): Apache Airflow chịu trách nhiệm lên lịch (schedule) và giám sát quá trình thực thi của toàn bộ quy trình ETL này theo các chu kỳ cố định.
+
+📋 Yêu cầu hệ thống
+Để chạy dự án này trên máy cá nhân, hệ thống của bạn cần cài đặt sẵn:
+
+Docker và Docker Compose.
+
+Tài khoản và API Key hợp lệ từ OpenWeatherMap.
+
+🛠️ Hướng dẫn cài đặt và khởi chạy
+Bước 1: Sao chép kho lưu trữ (Clone repository)
+
+Bash
+git clone https://github.com/hudeeeeee/weather-etl-pipeline.git
 cd weather-etl-pipeline
-Thiết lập môi trường ảo:
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# hoặc venv\Scripts\activate  # Windows
-Cài đặt thư viện:
-pip install -r requirements.txt
-Cấu hình biến môi trường:
-Tạo file .env và thêm API Key của bạn:
-API_KEY=your_openweathermap_api_key
-DB_CONNECTION=your_db_connection_string
+Bước 2: Thiết lập biến môi trường
+Tạo một tệp .env ở thư mục gốc của dự án và cung cấp các thông tin cấu hình, mật khẩu và API key của bạn:
 
-5. Cách chạy dự án
-Chạy thủ công:
-python main.py
-Chạy tự động (Cron/Airflow):
-[Hướng dẫn ngắn gọn cách cấu hình để pipeline tự chạy theo lịch trình]
+Ini, TOML
+OPENWEATHER_API_KEY=your_api_key_here
+SQL_SERVER_USER=sa
+SQL_SERVER_PASSWORD=your_strong_password
+Bước 3: Khởi chạy hệ thống với Docker
+Sử dụng Docker Compose để build và khởi động tất cả các dịch vụ (Airflow, SQL Server):
 
-6. Cấu trúc thư mục
-.
-├── data/               # Lưu trữ dữ liệu tạm hoặc CSV
-├── src/                # Mã nguồn chính
-│   ├── extract.py      # Module lấy dữ liệu
-│   ├── transform.py    # Module xử lý dữ liệu
-│   └── load.py         # Module đẩy dữ liệu vào DB
-├── .env                # Biến môi trường (không commit lên git)
-├── main.py             # File chạy chính
-└── requirements.txt    # Danh sách thư viện
+Bash
+docker-compose up -d
+Bước 4: Truy cập và kích hoạt Pipeline
 
+Mở trình duyệt web và truy cập vào giao diện quản lý của Airflow (thông thường là http://localhost:8080).
 
-7. Các tính năng chính & Cải tiến tương lai
-[x] Tự động lấy dữ liệu thời tiết hàng ngày.
+Đăng nhập bằng thông tin tài khoản mặc định được định nghĩa trong cấu hình.
 
-[x] Lưu trữ vào cơ sở dữ liệu quan hệ.
+Tìm DAG có tên weather_etl_dag, gạt nút chuyển đổi sang trạng thái Unpause/Enable và kích hoạt (Trigger) chạy lần đầu tiên.
 
-[ ] Tích hợp cảnh báo thời tiết cực đoan qua Telegram/Email.
-
-[ ] Triển khai lên Docker Container.
+📂 Cấu trúc thư mục dự kiến
+Plaintext
+weather-etl-pipeline/
+├── dags/                  # Chứa mã nguồn Python định nghĩa luồng công việc (Airflow DAGs)
+├── src/                   # Các script Python xử lý logic Extract, Transform và Load
+├── sql/                   # Chứa các tệp .sql để khởi tạo schema và bảng dữ liệu
+├── docker-compose.yml     # Tệp cấu hình để khởi tạo các container Docker
+├── requirements.txt       # Danh sách các thư viện Python (packages) cần thiết
+└── README.md              # Tài liệu hướng dẫn dự án
