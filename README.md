@@ -1,10 +1,10 @@
-<<<<<<< HEAD
+
                                             Weather ETL Pipeline
-=======
+
                                                             
 
 
->>>>>>> 8e9a937e229ed553b7167dbc3fd4abfb338e8386
+
 1. Tổng quan dự án
 Đây là hệ thống trích xuất, chuyển đổi và tải (ETL) dữ liệu thời tiết tự động. Hệ thống thu thập dữ liệu thời tiết theo thời gian thực từ API (như OpenWeatherMap), xử lý các thông số kỹ thuật và lưu trữ vào [Tên cơ sở dữ liệu/kho lưu trữ] để phục vụ phân tích dữ liệu hoặc các ứng dụng dự báo.
 
