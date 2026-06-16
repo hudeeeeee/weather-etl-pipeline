@@ -4,29 +4,30 @@ from datetime import datetime, timedelta
 
 default_args = {
     'owner': 'dat_do',
+    'depends_on_past': False,
+    'start_date': datetime(2026, 6, 15),
     'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=1),
 }
 
 with DAG(
     'weather_pipeline_v1',
     default_args=default_args,
-    start_date=datetime(2026, 6, 15),
     schedule_interval='@daily',
-    catchup=False
+    catchup=False,
 ) as dag:
 
-    # Task 1: Thu thập dữ liệu
-    get_data = BashOperator(
+    # Khởi chạy script kéo dữ liệu thời tiết
+    fetch_weather = BashOperator(
         task_id='fetch_weather',
-        bash_command='python /opt/airflow/src/pipeline.py'
+        bash_command='python /opt/airflow/src/fetch_weather.py'
     )
 
-    # Task 2: Bơm dữ liệu
-    load_data = BashOperator(
+    # Khởi chạy script bơm dữ liệu vào SQL Server
+    load_to_sql = BashOperator(
         task_id='load_to_sql',
         bash_command='python /opt/airflow/src/load_to_sql.py'
     )
 
-    # Thiết lập thứ tự: Fetch xong -> Load
-    get_data >> load_data
+    # Thiết lập thứ tự chạy: Kéo dữ liệu xong mới được bơm
+    fetch_weather >> load_to_sql
