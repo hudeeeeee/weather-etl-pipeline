@@ -1,8 +1,14 @@
+<<<<<<< HEAD
                                             Weather ETL Pipeline
+=======
+                                                            
+
+
+>>>>>>> 8e9a937e229ed553b7167dbc3fd4abfb338e8386
 1. Tổng quan dự án
 Đây là hệ thống trích xuất, chuyển đổi và tải (ETL) dữ liệu thời tiết tự động. Hệ thống thu thập dữ liệu thời tiết theo thời gian thực từ API (như OpenWeatherMap), xử lý các thông số kỹ thuật và lưu trữ vào [Tên cơ sở dữ liệu/kho lưu trữ] để phục vụ phân tích dữ liệu hoặc các ứng dụng dự báo.
 
-2. Kiến trúc hệ thống
+1. Kiến trúc hệ thống
 Extract: Kết nối API để lấy dữ liệu thô (JSON format).
 
 Transform: Làm sạch dữ liệu, xử lý các giá trị thiếu, chuyển đổi đơn vị đo lường (ví dụ: Kelvin sang Celsius) và tính toán các chỉ số bổ sung.
@@ -11,40 +17,28 @@ Load: Đưa dữ liệu đã làm sạch vào cơ sở dữ liệu [SQL/NoSQL/Da
 
 3. Công nghệ sử dụng
 Ngôn ngữ: Python 3.x
-
-Thư viện: pandas (xử lý dữ liệu), requests (gọi API), sqlalchemy (kết nối DB)...
-
+Thư viện: pandas (xử lý dữ liệu), requests (gọi API), sqlalchemy (kết nối DB)...\
 Cơ sở dữ liệu: [Ví dụ: PostgreSQL/MySQL/SQLite]
-
 Điều phối (Orchestration): [Ví dụ: Apache Airflow/Cron Job/Prefect]
-
 Quản lý môi trường: docker-compose / venv
 
 4. Hướng dẫn cài đặt
 Yêu cầu hệ thống
 Python 3.9+
-
 [Tên Database] đã được cài đặt
 
 Các bước thực hiện
 Clone dự án:
-
-
 git clone [link-repo-cua-ban]
 cd weather-etl-pipeline
 Thiết lập môi trường ảo:
-
-
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 # hoặc venv\Scripts\activate  # Windows
 Cài đặt thư viện:
-
-
 pip install -r requirements.txt
 Cấu hình biến môi trường:
 Tạo file .env và thêm API Key của bạn:
-
 API_KEY=your_openweathermap_api_key
 DB_CONNECTION=your_db_connection_string
 
@@ -55,7 +49,6 @@ Chạy tự động (Cron/Airflow):
 [Hướng dẫn ngắn gọn cách cấu hình để pipeline tự chạy theo lịch trình]
 
 6. Cấu trúc thư mục
-
 .
 ├── data/               # Lưu trữ dữ liệu tạm hoặc CSV
 ├── src/                # Mã nguồn chính
