@@ -1,4 +1,4 @@
-Weather ETL Pipeline
+                                            Weather ETL Pipeline
 1. Tổng quan dự án
 Đây là hệ thống trích xuất, chuyển đổi và tải (ETL) dữ liệu thời tiết tự động. Hệ thống thu thập dữ liệu thời tiết theo thời gian thực từ API (như OpenWeatherMap), xử lý các thông số kỹ thuật và lưu trữ vào [Tên cơ sở dữ liệu/kho lưu trữ] để phục vụ phân tích dữ liệu hoặc các ứng dụng dự báo.
 
@@ -65,6 +65,8 @@ Chạy tự động (Cron/Airflow):
 ├── .env                # Biến môi trường (không commit lên git)
 ├── main.py             # File chạy chính
 └── requirements.txt    # Danh sách thư viện
+
+
 7. Các tính năng chính & Cải tiến tương lai
 [x] Tự động lấy dữ liệu thời tiết hàng ngày.
 
