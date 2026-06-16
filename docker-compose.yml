@@ -1,15 +1,25 @@
-version: '3.8'
 services:
-  # Service Airflow Webserver
-  airflow:
-    image: apache/airflow:2.9.0
+  # 1. Cơ sở dữ liệu lưu trữ (SQL Server)
+  weather-dw:
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: weather-dw
     ports:
       - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong!Passw0rd # LƯU Ý: Đổi lại mật khẩu này cho khớp với code Python và DBeaver của bạn
+      - MSSQL_PID=Developer
+
+  # 2. Hệ thống điều phối (Apache Airflow)
+  airflow_server:
+    image: apache/airflow:2.9.0
+    container_name: airflow_server
+    ports:
+      - "8080:8080" # Mở đúng cổng 8080 cho giao diện Web
     volumes:
       - ./dags:/opt/airflow/dags
       - ./src:/opt/airflow/src
       - ./data:/opt/airflow/data
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
-    command: standalone # Chế độ chạy tất cả trong 1 container cho gọn
+    command: standalone
