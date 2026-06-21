@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_location
+    description: "Dimension table các thành phố được theo dõi thời tiết"
+    columns:
+      - name: location_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_daily_weather
+    description: "Fact table tổng hợp chỉ số thời tiết theo ngày, phục vụ báo cáo/dashboard"
+    columns:
+      - name: daily_weather_id
+        tests:
+          - unique
+          - not_null
+
+      - name: location_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_location')
+              field: location_id
+
+      - name: avg_temperature_c
+        tests:
+          - not_null

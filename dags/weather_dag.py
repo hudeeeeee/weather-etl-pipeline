@@ -29,5 +29,11 @@ with DAG(
         bash_command='python /opt/airflow/src/load_to_sql.py'
     )
 
-    # Thiết lập thứ tự chạy: Kéo dữ liệu xong mới được bơm
-    fetch_weather >> load_to_sql
+    # TASK MỚI: chạy dbt để transform dữ liệu vừa load
+    run_dbt_transform = BashOperator(
+        task_id='run_dbt_transform',
+        bash_command='cd /opt/airflow/weather_dbt && dbt run && dbt test'
+    )
+
+    # Thiết lập thứ tự chạy: Kéo dữ liệu -> Bơm vào SQL -> Transform bằng dbt
+    fetch_weather >> load_to_sql >> run_dbt_transform

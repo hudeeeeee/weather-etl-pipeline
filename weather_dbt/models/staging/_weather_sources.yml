@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: weather_dw
+    database: WeatherDW
+    schema: dbo
+    description: >
+      Database đích mà task `load_to_sql` (src/load_to_sql.py) bơm dữ liệu vào,
+      thông qua df.to_sql('Weather_Data', con=engine, if_exists='append').
+    tables:
+      - name: Weather_Data
+        description: >
+          Bảng lưu mỗi lần Airflow DAG `weather_pipeline_v1` chạy thành công,
+          mỗi record tương ứng 1 lần gọi OpenWeatherMap API cho thành phố Hà Nội.
+        loaded_at_field: Extracted_At
+        columns:
+          - name: City
+            description: "Tên thành phố (raw_data['name'] từ API)"
+          - name: Country
+            description: "Mã quốc gia (raw_data['sys']['country'])"
+          - name: Temperature
+            description: "Nhiệt độ hiện tại, đơn vị Celsius (đã gọi API với units=metric)"
+          - name: Feels_Like
+            description: "Nhiệt độ cảm nhận"
+          - name: Humidity
+            description: "Độ ẩm (%)"
+          - name: Weather_Main
+            description: "Nhóm thời tiết chính (Rain, Clear, Clouds...)"
+          - name: Weather_Desc
+            description: "Mô tả chi tiết thời tiết"
+          - name: Wind_Speed
+            description: "Tốc độ gió (m/s)"
+          - name: Extracted_At
+            description: "Thời điểm fetch_weather.py trích xuất dữ liệu, dạng string '%Y-%m-%d %H:%M:%S'"

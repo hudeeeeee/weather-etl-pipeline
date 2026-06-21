@@ -1,0 +1,17 @@
+# Đặt file này tại ~/.dbt/profiles.yml (KHÔNG commit lên GitHub, chỉ dùng làm mẫu)
+# Khớp với connection string trong src/load_to_sql.py (SERVER, DATABASE, USERNAME)
+# Yêu cầu cài: pip install dbt-core dbt-sqlserver
+
+weather_etl:
+  target: dev
+  outputs:
+    dev:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: weather-dw          # tên service SQL Server trong docker-compose.yml
+      port: 1433
+      database: WeatherDW
+      schema: dbo
+      user: "{{ env_var('DBT_SQLSERVER_USER') }}"
+      password: "{{ env_var('DBT_SQLSERVER_PASSWORD') }}"
+      threads: 4
